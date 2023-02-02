@@ -1,44 +1,39 @@
-const { Model, DataTypes } = require('sequelize');
+const Blog= require('./Blog');
+const Comment= require('./Comment');
+const User= require('./User');
 
-const sequelize = require('../Config/connection.js');
 
-class Comment extends Model { }
 
-Comment.init({
-    id:{
-        type:DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement:true,
-        allowNull:false
-    },
-    commentContent:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
-    UserName_id:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-        references:{
-          model: 'user',
-          key:'id'  
-        }
-    },
-    blog_id:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-        references:{
-            model:'blog',
-            key:'id'
-        }
-    }
-},
-{
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'comment',
-  }
-)
+User.hasMany(Blog,{
+    foreignKey:'userName_id',
+    onDelete:'CASCADE'
+})
 
-module.exports = Comment;
+Blog.belongsTo(User,{
+    foreignKey:'userName_id'
+})
+
+User.hasMany(Comment,{
+    foreignKey:'userName_id',
+    onDelete:'CASCADE'
+})
+
+Comment.belongsTo(User,{
+    foreignKey:'userName_id'
+})
+
+Blog.hasMany(Comment,{
+    foreignKey:'blog_id',
+    onDelete:'CASCADE'
+})
+
+Comment.belongsTo(Blog,{
+    foreignKey:'blog_id'
+})
+
+module.exports={
+    Comment,
+    Blog,
+    User
+
+};
