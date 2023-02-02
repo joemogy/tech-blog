@@ -1,15 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
-
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/connection.js');
-const User = require('./User.js');
+const sequelize = require('../Config/connection.js');
 
 class Blog extends Model { }
 
 Blog.init({
     id:{
-        type:DataTypes.INTEGER
-        primaryKey: true,
+        type:DataTypes.INTEGER,
+        primaryKey : true,
         autoIncrement:true,
         allowNull:false
     },
@@ -22,8 +19,8 @@ Blog.init({
         allowNull:false
     },
     UserName_id:{
-        type:DataTypes.STRING
-        allowNull:false,
+        type:DataTypes.INTEGER,
+        allowNull:true,
         references:{
           model: 'user',
           key:'id'  
