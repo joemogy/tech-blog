@@ -1,0 +1,20 @@
+<section>
+    <div class="title-username">
+        {{#each blog}}
+        <ul class="list">
+            <div>
+                <div>
+                    <a href="/blog/{{id}}">{{title}}</a>
+                </div>
+                <div class="content">
+                    {{content}}
+                </div>
+                <div>
+                    <p>Posted By: {{user.userName}}</p>
+                </div>
+            </div>
+        </ul>
+        {{/each}}
+    </div>
+
+</section>

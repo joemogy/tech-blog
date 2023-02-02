@@ -1,0 +1,23 @@
+
+<section id="dashboard-section">
+    <div id="heading">
+        <h1>Your Posts</h1>
+    </div>
+    <div class="title-username">
+        {{#each blog}}
+        <ul class="list">
+            <div>
+                <a href="">{{title}}</a>
+            </div>
+            <div>
+                <p>Posted By: {{user.user_name}}</p>
+            </div>
+
+        </ul>
+        {{/each}}
+    </div>
+</section>
+
+<div>
+    <button type="submit" class="new-post-btn"><a href="/dashboard/newpost"></a>Create New Post</button>
+</div>

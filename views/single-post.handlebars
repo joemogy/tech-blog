@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <a href="/blog/{{id}}">{{title}}</a>
+    </div>
+    <div class="content">
+        {{content}}
+    </div>
+    <div>
+        <p>Posted By: {{user.userName}}</p>
+    </div>
+</div>
+
+{{#if loggedIn}}
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body" id="comnent-text-area"></textarea>
+  </div>
+
+  <div>
+    <button type="submit" id="comment-submit-btn">Add Comment</button>
+  </div>
+</form>
+{{/if}}
+
+{{> comments }}
+
+{{#if loggedIn}}
+<script src="/JS/comment.js"></script>
+{{/if}}
